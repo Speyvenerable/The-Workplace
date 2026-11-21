@@ -68,7 +68,7 @@
   var loaded=false;
   var realm='forge';
   var reduce=false;
-  try{reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+  reduce=false;/* animations always play */
 
   function norm(o){
     o=o||{};
@@ -2110,7 +2110,7 @@
       g.putImageData(im,0,0);
     }
     function paintAll(){Array.prototype.forEach.call(ab.querySelectorAll('canvas.bg'),paint)}
-    var raf=0,calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,lastF=0;
+    var raf=0,calm=false,lastF=0;
     function loop(now){
       if(ab.hidden){raf=0;return}
       if(now-lastF>=33){lastF=now;Array.prototype.forEach.call(ab.querySelectorAll('canvas.bg'),function(cv){if(cv._scene)cv._scene.draw(now/1000)})}
